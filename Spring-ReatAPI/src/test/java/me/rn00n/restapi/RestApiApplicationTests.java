@@ -1,4 +1,4 @@
-package me.rn00n.demorestapi;
+package me.rn00n.restapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
