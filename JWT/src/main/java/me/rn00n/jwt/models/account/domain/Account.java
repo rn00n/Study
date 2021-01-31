@@ -1,4 +1,4 @@
-package me.rn00n.jwt.models.account;
+package me.rn00n.jwt.models.account.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
