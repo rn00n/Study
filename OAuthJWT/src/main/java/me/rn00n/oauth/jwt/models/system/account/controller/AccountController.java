@@ -1,4 +1,4 @@
-package me.rn00n.oauth.jwt.models.account.controller;
+package me.rn00n.oauth.jwt.models.system.account.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
