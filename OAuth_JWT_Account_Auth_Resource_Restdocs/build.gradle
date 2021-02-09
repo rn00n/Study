@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.3.8.RELEASE'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id "org.asciidoctor.convert" version "1.5.9.2" // Asciidoctor 플러그인을 적용
 }
 
 group = 'me.rn00n.oauth'
@@ -20,6 +21,7 @@ repositories {
 
 ext {
     set('springCloudVersion', "Hoxton.SR9")
+    snippetsDir = file('build/generated-snippets') // 생성될 스니펫의 저장 위치 지정
 }
 
 dependencies {
@@ -39,6 +41,8 @@ dependencies {
 
     compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.9'
 
+    asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor:{project-version}' // asciidoctor 구성 안에 spring-restdocs-asciidoctor 의존성을 추가
+    testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc:{project-version}' // testCompile 구성 안에 spring-restdocs-mockmvc 의존성 추가
 }
 
 dependencyManagement {
@@ -49,4 +53,18 @@ dependencyManagement {
 
 test {
     useJUnitPlatform()
+    outputs.dir snippetsDir // test snippets 디렉터리를 출력으로 추가 하도록 작업 구성
+}
+
+asciidoctor { // asciidoctor 작업 구성
+    inputs.dir snippetsDir // 스니펫 디렉토리를 입력으로 구성
+    dependsOn test // 문서가 작성되기 전에 테스트가 실행되도록 태스크가 테스트 태스크에 종속
+}
+
+/** 문서 패키징 */
+bootJar {
+    dependsOn asciidoctor // jar를 빌드하기 전에 문서가 생성되었는지 확인
+    from ("${asciidoctor.outputDir}/html5") { // 생성 된 문서를 jar의 static/docs 디렉토리에 복사
+        into 'static/docs'
+    }
 }
