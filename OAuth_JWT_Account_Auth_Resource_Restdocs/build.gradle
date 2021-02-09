@@ -24,6 +24,8 @@ ext {
     snippetsDir = file('build/generated-snippets') // 생성될 스니펫의 저장 위치 지정
 }
 
+ext['spring-restdocs.version'] = '2.0.5.RELEASE'
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'
@@ -41,8 +43,8 @@ dependencies {
 
     compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.9'
 
-    asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor:{project-version}' // asciidoctor 구성 안에 spring-restdocs-asciidoctor 의존성을 추가
-    testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc:{project-version}' // testCompile 구성 안에 spring-restdocs-mockmvc 의존성 추가
+    asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor' // asciidoctor 구성 안에 spring-restdocs-asciidoctor 의존성을 추가
+    testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc' // testCompile 구성 안에 spring-restdocs-mockmvc 의존성 추가
 }
 
 dependencyManagement {
@@ -52,8 +54,8 @@ dependencyManagement {
 }
 
 test {
-    useJUnitPlatform()
     outputs.dir snippetsDir // test snippets 디렉터리를 출력으로 추가 하도록 작업 구성
+    useJUnitPlatform()
 }
 
 asciidoctor { // asciidoctor 작업 구성
