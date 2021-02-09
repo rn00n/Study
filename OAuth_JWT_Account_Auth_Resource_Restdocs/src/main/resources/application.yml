@@ -1,0 +1,40 @@
+spring:
+  h2:
+    console:
+      enabled: false
+  datasource:
+    url: jdbc:mariadb://localhost:3306/motoo?useSSL=false&characterEncoding=utf-8&useUnicode=true&serverTimezone=GMT%2b9
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: motoo
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+security:
+  oauth2:
+    client:
+      access-token-validity-seconds: 2592000 #30일
+      refresh-token-validity-seconds: 8640000 #100일
+      client-id: motooApp
+      client-secret: 1234
+      scope:
+        - app
+      authorized-grant-types:
+        - password
+        - refresh_token
+    authorization:
+      check-token-access: "isAuthenticated()"
+      jwt:
+        key-value: mbr
+        key-password: 1234
+    resource:
+      jwt:
+        key-value: mbr
+        key-password: 1234
+
+init_data: true

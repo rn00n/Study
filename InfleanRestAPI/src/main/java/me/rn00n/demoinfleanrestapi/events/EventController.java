@@ -133,5 +133,4 @@ public class EventController {
         return ResponseEntity.badRequest().body(errors);
     }
 
-
 }
