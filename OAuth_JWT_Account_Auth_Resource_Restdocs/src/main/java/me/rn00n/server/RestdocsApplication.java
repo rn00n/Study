@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OAuthJwpApplication {
+public class RestdocsApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OAuthJwpApplication.class, args);
+        SpringApplication.run(RestdocsApplication.class, args);
     }
 
 }

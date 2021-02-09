@@ -32,7 +32,8 @@ public class AppAccessDecisionManager implements AccessDecisionManager {
             throws AccessDeniedException, InsufficientAuthenticationException {
         HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();
 
-        if (new AntPathRequestMatcher("/").matches(request)) {
+        if (new AntPathRequestMatcher("/").matches(request) ||
+                new AntPathRequestMatcher("/api/hello").matches(request)) {
             return;
         }
 
