@@ -1,6 +1,7 @@
 package me.rn00n.models.business.imagefile.controller;
 
 import me.rn00n.infra.commons.BaseControllerTest;
+import me.rn00n.models.business.imagefile.ImageSample;
 import me.rn00n.models.business.imagefile.dto.ImageFileDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ class ImageFileControllerTest extends BaseControllerTest {
     @Test
     @DisplayName("이미지파일 등록 - 성공")
     void addImageFile_Success() throws Exception {
-        String imgFile = "";
+        String imgFile = ImageSample.base64;
         ImageFileDto.Create create = ImageFileDto.Create.builder()
                 .name("이미지")
                 .imgFile(imgFile)
