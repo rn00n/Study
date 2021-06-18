@@ -1,0 +1,6 @@
+me/rn00n/oauth2/jwt/JwtApplicationTests.java
+ me.rn00n.oauth2.jwt.JwtApplicationTests
+me/rn00n/oauth2/jwt/infra/commons/BaseControllerTest.java
+ me.rn00n.oauth2.jwt.infra.commons.BaseControllerTest
+me/rn00n/oauth2/jwt/infra/config/AuthServerConfigTest.java
+ me.rn00n.oauth2.jwt.infra.config.AuthServerConfigTest
