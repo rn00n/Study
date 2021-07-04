@@ -1,0 +1,59 @@
+
+server:
+  port: 8080
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: 2922458f3906c1e2d8bc896782a6ccf2
+            client-secret: G3BDmf0K3otyhxmy90SgpSBCwbpePe8Q
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            client-authentication-method: POST
+            client-name: Kakao # TODO 소문자?
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+  h2:
+    console:
+      enabled: false
+    datasource:
+      url: jdbc:mariadb://localhost:3306/oauth2?useSSL=false&characterEncoding=utf-8&useUnicode=true&serverTimezone=GMT%2b9
+      driver-class-name: org.mariadb.jdbc.Driver
+      username: oauth2
+      password: 1234
+    jpa:
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          format_sql: true
+          show_sql: true
+
+#security:
+#  oauth2:
+#    client:
+#      access-token-validity-seconds: 2592000 #30일
+#      refresh-token-validity-seconds: 8640000 #100일
+#      client-id: semoryApp
+#      client-secret: 1234
+#      scope:
+#        - app
+#      authorized-grant-types:
+#        - password
+#        - refresh_token
+#    authorization:
+#      check-token-access: "isAuthenticated()"
+#      jwt:
+#        key-value: mbr
+#        key-password: 1234
+#    resource:
+#      jwt:
+#        key-value: mbr
+#        key-password: 1234
